@@ -29,17 +29,19 @@
   <ItemGroup>
     <None Remove="ClientApp\app\app-routing.module.ts" />
     <None Remove="ClientApp\app\components\home\home.component.ts" />
+    <None Remove="ClientApp\app\components\products\product-edit.component.ts" />
     <None Remove="ClientApp\app\components\products\products.component.ts" />
     <None Remove="ClientApp\app\components\products\ProductService.ts" />
-    <None Remove="ClientApp\app\components\shared\product.ts" />
+    <None Remove="ClientApp\app\components\shared\IProduct.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\app\app-routing.module.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\home\home.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\products\product-edit.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\products\products.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\products\ProductService.ts" />
-    <TypeScriptCompile Include="ClientApp\app\components\shared\Product.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\shared\IProduct.ts" />
   </ItemGroup>
 
   <ItemGroup>

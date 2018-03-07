@@ -2,7 +2,7 @@
 import { Router } from '@angular/router';
 
 import { ProductService } from '../products/ProductService';
-import { IProduct } from '../shared/Product';
+import { IProduct, ProductType } from '../shared/IProduct';
 
 @Component({
     templateUrl: './products.component.html'
@@ -37,7 +37,11 @@ export class ProductsComponent implements OnInit {
                 this.filteredProducts = this.products;
             },
             (err: any) => console.log(err),
-            () => console.log('getProductsPage() retrieved customers'));
+            () => console.log('Products retrieved successfully'));
+    }
+
+    getType(id: number) {
+        return ProductType[id];
     }
 
     performFilter(filterBy: string): IProduct[] {

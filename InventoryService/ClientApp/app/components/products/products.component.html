@@ -7,19 +7,12 @@
         </header>
         <br />
         <div class="row">
-            <div class="col-md-4">
-                <a class="btn btn-default" [routerLink]="['/products', '0']">Add New Product</a>
-            </div>
+            <a class="btn btn-primary btn-sm pull-right" [routerLink]="['/products', '0']">Add New Product</a>
         </div>
         <div class="row">
-            <div class="col-md-2">Filter by:</div>
-            <div class="col-md-4">
+            <div class="col-md-1">Filter by:</div>
+            <div class="col-md-2">
                 <input type="text" [(ngModel)]="listFilter" />
-            </div>
-        </div>
-        <div class="row" *ngIf="listFilter">
-            <div class="col-md-6">
-                Filtered by: {{listFilter}}
             </div>
         </div>
         <br>
@@ -36,22 +29,10 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let product of filteredProducts">
-                            <td> {{ product.name }}</td>
-                            <td>
-                                <a class="btn btn-primary" [routerLink]='["/employees",employee.id,"edit"]'>
-                                    Edit
-                                </a>
-                            </td>
-                            <td>
-                                <a class="btn btn-primary" (click)="deleteEmp(employee.id)">
-                                    Delete
-                                </a>
-                            </td>
-                            <td>
-                                <a class="btn btn-primary" [routerLink]='["/employees",employee.id]'>
-                                    View
-                                </a>
-                            </td>
+                            <td> <a [routerLink]="['/products', product.id ]"> {{ product.name }} </a> </td>
+                            <td> {{ product.price }}</td>
+                            <td> {{ product.quantity }}</td>
+                            <td> {{ getType(product.type) }}</td>
                         </tr>
                     </tbody>
                 </table>

@@ -12,7 +12,7 @@ using System;
 namespace InventoryService.Migrations
 {
     [DbContext(typeof(InventoryDbContext))]
-    [Migration("20180307110153_InitialCare")]
+    [Migration("20180307152816_InitialCare")]
     partial class InitialCare
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
