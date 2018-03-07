@@ -26,6 +26,26 @@
     <Content Remove="ClientApp\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="ClientApp\app\app-routing.module.ts" />
+    <None Remove="ClientApp\app\components\home\home.component.ts" />
+    <None Remove="ClientApp\app\components\products\products.component.ts" />
+    <None Remove="ClientApp\app\components\products\ProductService.ts" />
+    <None Remove="ClientApp\app\components\shared\product.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\app-routing.module.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\home\home.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\products\products.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\products\ProductService.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\shared\Product.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\images\inventory.jpg" />
+  </ItemGroup>
+
   <Target Name="DebugRunWebpack" BeforeTargets="Build" Condition=" '$(Configuration)' == 'Debug' And !Exists('wwwroot\dist') ">
     <!-- Ensure Node.js is installed -->
     <Exec Command="node --version" ContinueOnError="true">

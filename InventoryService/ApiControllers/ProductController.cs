@@ -57,25 +57,6 @@ namespace InventoryService.ApiControllers
             }
         }
 
-        [HttpGet("page/{skip}/{take}")]
-        [NoCache]
-        [ProducesResponseType(typeof(List<Product>), 200)]
-        [ProducesResponseType(typeof(ApiResponse), 400)]
-        public async Task<ActionResult> ProductsPage(int skip, int take)
-        {
-            try
-            {
-                var pagingResult = await repository.GetProductsPageAsync(skip, take);
-                Response.Headers.Add("X-InlineCount", pagingResult.TotalRecords.ToString());
-                return Ok(pagingResult.Records);
-            }
-            catch (Exception exp)
-            {
-                logger.LogError(exp.Message);
-                return BadRequest(new ApiResponse { Status = false });
-            }
-        }
-
         [HttpPost]
         [ValidateAntiForgeryToken]
         [ProducesResponseType(typeof(ApiResponse), 201)]

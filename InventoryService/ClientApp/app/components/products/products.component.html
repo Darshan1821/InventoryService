@@ -1,0 +1,61 @@
+﻿<div class="customers view indent">
+    <div class="container">
+        <header>
+            <h3>
+                {{ pageTitle }}
+            </h3>
+        </header>
+        <br />
+        <div class="row">
+            <div class="col-md-4">
+                <a class="btn btn-default" [routerLink]="['/products', '0']">Add New Product</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2">Filter by:</div>
+            <div class="col-md-4">
+                <input type="text" [(ngModel)]="listFilter" />
+            </div>
+        </div>
+        <div class="row" *ngIf="listFilter">
+            <div class="col-md-6">
+                Filtered by: {{listFilter}}
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="table-responsive">
+                <table class="table" *ngIf="products && products.length">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Type</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let product of filteredProducts">
+                            <td> {{ product.name }}</td>
+                            <td>
+                                <a class="btn btn-primary" [routerLink]='["/employees",employee.id,"edit"]'>
+                                    Edit
+                                </a>
+                            </td>
+                            <td>
+                                <a class="btn btn-primary" (click)="deleteEmp(employee.id)">
+                                    Delete
+                                </a>
+                            </td>
+                            <td>
+                                <a class="btn btn-primary" [routerLink]='["/employees",employee.id]'>
+                                    View
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
