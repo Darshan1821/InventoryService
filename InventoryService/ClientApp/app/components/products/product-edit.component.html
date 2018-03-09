@@ -1,23 +1,22 @@
 ﻿<div>
     <header>
-        <h3> {{ product.name }} </h3>
+        <h3 *ngIf="product.id"> {{ product.name }} </h3>
+        <h3 *ngIf="!product.id"> Add Product </h3>
     </header>
+    <div class="row alert-danger">{{errorMessage}}</div>
     <br>
     <form (ngSubmit)="submit()" #productForm="ngForm" class="editForm" novalidate>
         <div class="form-group">
             <label>Name</label>
             <input type="text" class="form-control" name="name" [(ngModel)]="product.name" #name="ngModel" required>
-            <!--<div class="alert alert-danger" [hidden]="name.untouched || name.valid">Product Name is required</div>-->
         </div>
         <div class="form-group">
             <label>Price</label>
             <input type="text" pattern="[1-10.]+" class="form-control" name="price" [(ngModel)]="product.price" #price="ngModel" required>
-            <!--<div class="alert alert-danger" [hidden]="price.untouched || price.valid">Price is required and must be valid</div>-->
         </div>
         <div class="form-group">
             <label>Quantity</label>
             <input type="text" pattern="[1-10]+" class="form-control" name="quantity" [(ngModel)]="product.quantity" #quantity="ngModel" required />
-            <!-- <div class="alert alert-danger" [hidden]="quantity.untouched || quantity.valid">Quantity is required and must be valid</div>-->
         </div>
         <div class="form-group">
             <label>Type</label>
@@ -25,25 +24,23 @@
                     [(ngModel)]="product.type"
                     name="type"
                     required>
-                <option *ngFor="let type of productType" [ngValue]='product.type' value=''>{{type}}</option>
+                <option value="0">Cruciferous</option>
+                <option value="1">LeafyGreen</option>
+                <option value="2">Marrow</option>
+                <option value="3">Root</option>
             </select>
         </div>
-                Delete Product?&nbsp;&nbsp;
         <br>
         <div *ngIf="product">
-            <div class="alert alert-warning" *ngIf="product.id && deleteMessageEnabled">
-                <button class="btn btn-danger" (click)="delete($event)">Yes</button>&nbsp;&nbsp;
-                <button class="btn btn-default" (click)="deleteMessageEnabled = false">No</button>
+            <div class="pull-left" *ngIf="product.id">
+                <button class="btn btn-danger" (click)="delete($event)">Delete</button>
             </div>
-            <button class="btn btn-danger" *ngIf="product.id && !deleteMessageEnabled" (click)="deleteMessageEnabled = true">Delete</button>
-            &nbsp;&nbsp;
-            <div class="pull-right" *ngIf="!deleteMessageEnabled">
+            <div class="pull-right">
                 <button class="btn btn-default" (click)="cancel($event)">Cancel</button>&nbsp;&nbsp;
-                <button type="submit" class="btn btn-success" [disabled]="!customerForm.valid">{{ operationText }}</button>
+                <button type="submit" class="btn btn-success">{{ operationText }}</button>
             </div>
         </div>
         <br>
         <br>
-        <div class="alert alert-danger" *ngIf="errorMessage != null">{{ errorMessage }}</div>
     </form>
 </div>

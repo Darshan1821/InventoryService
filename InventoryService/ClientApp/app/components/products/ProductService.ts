@@ -23,10 +23,34 @@ export class ProductService {
     }
 
     getProduct(id: number): Observable<IProduct> {
-        return this.http.get(this.baseUrl)
+        return this.http.get(this.baseUrl + "/" + id)
             .map((res: Response) => {
                 let products = res.json();
                 return products;
             });
+    }
+
+    createProduct(product: IProduct): Observable<IProduct> {
+        return this.http.post(this.baseUrl, product)
+            .map((res: Response) => {
+                const data = res.json();
+                console.log("Product created: " + data.status);
+                return data.product;
+            })
+            .catch(this.handleError);
+    }
+
+    private handleError(error: any) {
+        console.error('server error:', error);
+        if (error instanceof Response) {
+            let errMessage = "";
+            try {
+                errMessage = error.json().error;
+            } catch (err) {
+                errMessage = error.statusText !== null ? error.statusText : "";
+            }
+            return Observable.throw(errMessage);
+        }
+        return Observable.throw(error || 'ASP.NET Core server error');
     }
 }

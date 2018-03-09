@@ -16,10 +16,8 @@ export class ProductEditComponent implements OnInit {
     };
 
     errorMessage: string;
-    deleteMessageEnabled: boolean;
-    operationText: string = 'Create';
-    productType: string[] = ['Cruciferous', 'LeafyGreen', 'Marrow', 'Root'];
-
+    operationText: string = 'Add';
+   
     constructor(private router: Router,
         private route: ActivatedRoute,
         private productService: ProductService) { }
@@ -32,9 +30,24 @@ export class ProductEditComponent implements OnInit {
         }
     }
 
+    cancel(event: Event) {
+        event.preventDefault();
+        this.router.navigate(['/products']);
+    }
+
     getProduct(id: number): void {
         this.productService.getProduct(id).subscribe((product: IProduct) => {
             this.product = product;
         }, (err: any) => console.log(err));
+    }
+
+    submit(): void {
+        this.productService.createProduct(this.product).subscribe((product: IProduct) => {
+            if (product) {
+                this.router.navigate(['/products']);
+            } else {
+                this.errorMessage = "Unable to add product";
+            }
+        }), (err: any) => console.log(err);
     }
 }
