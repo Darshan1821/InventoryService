@@ -40,12 +40,35 @@ export class ProductService {
             .catch(this.handleError);
     }
 
+    updateProduct(product: IProduct): Observable<IProduct> {
+        return this.http.put(this.baseUrl + "/" + product.id, product)
+            .map((res: Response) => {
+                const data = res.json();
+                console.log("Product updated: " + data.status);
+                return data.product;
+            })
+            .catch(this.handleError);
+    }
+
+    deleteProduct(id?: number): Observable<boolean> {
+        return this.http.delete(this.baseUrl + "/" + id)
+            .map((res: Response) => {
+                const data = res.json();
+                console.log("Product deleted: " + data.status);
+                return data.status;
+            })
+            .catch(this.handleError);
+    }
+
     private handleError(error: any) {
         console.error('server error:', error);
         if (error instanceof Response) {
             let errMessage = "";
             try {
                 errMessage = error.json().error;
+                if (errMessage == null) {
+                    errMessage = error.statusText !== null ? error.statusText : "";
+                }
             } catch (err) {
                 errMessage = error.statusText !== null ? error.statusText : "";
             }

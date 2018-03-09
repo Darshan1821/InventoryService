@@ -58,6 +58,7 @@ namespace InventoryService.ApiControllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         [ProducesResponseType(typeof(ApiResponse), 201)]
         [ProducesResponseType(typeof(ApiResponse), 400)]
         public async Task<ActionResult> CreateProduct([FromBody]Product product)

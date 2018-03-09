@@ -40,7 +40,7 @@
     <TypeScriptCompile Include="ClientApp\app\components\home\home.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\products\product-edit.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\products\products.component.ts" />
-    <TypeScriptCompile Include="ClientApp\app\components\products\ProductService.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\products\productservice.ts" />
     <TypeScriptCompile Include="ClientApp\app\components\shared\IProduct.ts" />
   </ItemGroup>
 

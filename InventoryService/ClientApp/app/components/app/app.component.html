@@ -1,4 +1,4 @@
-
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
 <div class="navbar navbar-inverse navbar-fixed-top">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -9,7 +9,7 @@
         </button>
         <a class="navbar-brand" [routerLink]="['/welcome']">{{pageTitle}}</a>
     </div>
-    <div class="navbar-collapse collapse">  
+    <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
             <li routerLinkActive="active"><a [routerLink]="['/welcome']">Home</a></li>
             <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact : true }">

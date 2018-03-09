@@ -6,7 +6,7 @@ import { AppComponent } from './components/app/app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './components/home/home.component';
 import { ProductsComponent } from './components/products/products.component';
-import { ProductService } from './components/products/ProductService';
+import { ProductService } from './components/products/productservice';
 import { ProductEditComponent } from './components/products/product-edit.component';
 
 

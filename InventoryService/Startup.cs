@@ -4,8 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using InventoryService.Data;
 using InventoryService.Repository;
+using Microsoft.AspNetCore.Antiforgery;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.SpaServices.Webpack;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -50,7 +52,7 @@ namespace InventoryService
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env,
-                              ProductDbSeeder productDbSeeder)
+                              ProductDbSeeder productDbSeeder, IAntiforgery antiforgery)
         {
             if (env.IsDevelopment())
             {
@@ -64,6 +66,20 @@ namespace InventoryService
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+
+            app.Use((context, next) =>
+            {
+                if (context.Request.Method == HttpMethods.Get &&
+                    (string.Equals(context.Request.Path.Value, "/", StringComparison.OrdinalIgnoreCase) ||
+                     string.Equals(context.Request.Path.Value, "/home/index", StringComparison.OrdinalIgnoreCase)))
+                {
+                    var tokens = antiforgery.GetAndStoreTokens(context);
+                    context.Response.Cookies.Append("XSRF-TOKEN",
+                        tokens.RequestToken,
+                        new CookieOptions() { HttpOnly = false });
+                }
+                return next();
+            });
 
             app.UseStaticFiles();
 
